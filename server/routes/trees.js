@@ -50,6 +50,8 @@ router.get('/:id', async (req, res, next) => {
     try {
         // Your code here 
 
+        tree = await Tree.findByPk(req.params.id)
+
         if (tree) {
             res.json(tree);
         } else {
