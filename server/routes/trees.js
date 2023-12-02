@@ -1,6 +1,7 @@
 // Instantiate router - DO NOT MODIFY
 const express = require('express');
 const router = express.Router();
+const { Tree } = require('../db/models')
 
 /**
  * BASIC PHASE 1, Step A - Import model
@@ -24,7 +25,10 @@ const router = express.Router();
  *   - Ordered by the heightFt from tallest to shortest
  */
 router.get('/', async (req, res, next) => {
-    let trees = [];
+    let trees = await Tree.findAll({
+        attributes: ["heightFt", "tree", "id"],
+        order: [["heightFt", "DESC"]]
+    });
 
     // Your code here 
 
